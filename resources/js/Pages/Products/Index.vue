@@ -18,19 +18,22 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col md:flex-row">
-   
-    <nav class="min-h-screen w-full md:w-[20%] bg-white shadow-lg p-4">
-      <h2 class="text-center text-2xl font-semibold my-3">
-        <Link href="/products" class="text-green-600 hover:text-green-800">
+  <div class="flex flex-col md:flex-row min-h-screen bg-gray-100">
+
+    <nav class="w-full md:w-1/4 bg-white shadow-lg p-6">
+      <h2 class="text-center text-2xl font-bold text-gray-800 mb-4">
+        <Link
+          href="/products"
+          class="text-green-600 hover:text-green-800 hover:underline duration-200"
+        >
           Categories
         </Link>
       </h2>
-      <ul>
+      <ul class="space-y-2">
         <li
           v-for="category in categories"
           :key="category.id"
-          class="p-3 cursor-pointer hover:bg-green-500 hover:text-white transition-all duration-200 rounded-md"
+          class="p-3 rounded-lg text-gray-700 font-medium cursor-pointer transition-all duration-300 hover:bg-green-500 hover:text-white"
         >
           <Link :href="'/products/' + category.id" class="block w-full">
             {{ category.name }}
@@ -39,30 +42,33 @@ defineProps({
       </ul>
     </nav>
 
-  
-    <div class="w-full md:w-3/4 p-5">
-      <h1 class="text-center text-2xl font-semibold my-3">
+    <div class="w-full md:w-3/4 p-6">
+      <h1 class="text-center text-3xl font-bold text-gray-900 mb-6">
         {{ selectedCategory ? selectedCategory.name : "All Products" }}
       </h1>
 
-  
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+ 
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div
           v-for="product in products"
           :key="product.id"
-          class="shadow-lg p-4 rounded-lg bg-white hover:shadow-xl transition-all duration-200"
+          class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
         >
-          <h5 class="text-lg font-semibold text-gray-800">
-            {{ product.name }}
-          </h5>
-          <p class="text-sm text-gray-600">{{ product.description }}</p>
-          <div class="flex justify-between mt-2">
-            <p class="text-xs text-gray-500">
-              Wholesale Price: <span class="text-green-600">P{{ product.whole_sale_price }}</span>
-            </p>
-            <p class="text-xs text-gray-500">
-              Retail Price: <span class="text-red-600">P{{ product.retail_price }}</span>
-            </p>
+          <div class="p-4">
+            <h5 class="text-xl font-semibold text-gray-800">{{ product.name }}</h5>
+            <p class="text-sm text-gray-600 mt-2">{{ product.description }}</p>
+            <div class="flex justify-between mt-4">
+              <p class="text-sm text-gray-500">
+                <span class="font-semibold text-green-600">P{{ product.whole_sale_price }}</span>
+                <br />
+                <span class="text-xs">Wholesale Price</span>
+              </p>
+              <p class="text-sm text-gray-500">
+                <span class="font-semibold text-red-600">P{{ product.retail_price }}</span>
+                <br />
+                <span class="text-xs">Retail Price</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
