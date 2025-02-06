@@ -20,8 +20,8 @@ class ProductsFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->sentence(),
             'categories_id' => rand(1,10),
-            'whole_sale_price' => fake()->randomFloat(1000,50000),
-            'retail_price' => fake()->randomFloat(1000,50000),
+            'whole_sale_price' => fake()->randomFloat(2,100 ,1000),
+            'retail_price' => fake()->randomFloat(2,150 , 1500),
         ];
     }
 }

@@ -19,7 +19,7 @@ defineProps({
 
 <template>
   <div class="flex flex-col md:flex-row min-h-screen bg-gray-100">
-
+    <!-- Sidebar for Categories -->
     <nav class="w-full md:w-1/4 bg-white shadow-lg p-6">
       <h2 class="text-center text-2xl font-bold text-gray-800 mb-4">
         <Link
@@ -42,36 +42,36 @@ defineProps({
       </ul>
     </nav>
 
+    <!-- Product Listing in Table Format -->
     <div class="w-full md:w-3/4 p-6">
       <h1 class="text-center text-3xl font-bold text-gray-900 mb-6">
         {{ selectedCategory ? selectedCategory.name : "All Products" }}
       </h1>
 
- 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div
-          v-for="product in products"
-          :key="product.id"
-          class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
-        >
-          <div class="p-4">
-            <h5 class="text-xl font-semibold text-gray-800">{{ product.name }}</h5>
-            <p class="text-sm text-gray-600 mt-2">{{ product.description }}</p>
-            <div class="flex justify-between mt-4">
-              <p class="text-sm text-gray-500">
-                <span class="font-semibold text-green-600">P{{ product.whole_sale_price }}</span>
-                <br />
-                <span class="text-xs">Wholesale Price</span>
-              </p>
-              <p class="text-sm text-gray-500">
-                <span class="font-semibold text-red-600">P{{ product.retail_price }}</span>
-                <br />
-                <span class="text-xs">Retail Price</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <table class="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-200 text-gray-700">
+          <tr>
+            <th class="p-4 text-left font-semibold">Product Name</th>
+            <th class="p-4 text-left font-semibold">Category id</th>
+            <th class="p-4 text-left font-semibold">Description</th>
+            <th class="p-4 text-left font-semibold">Wholesale Price</th>
+            <th class="p-4 text-left font-semibold">Retail Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="product in products"
+            :key="product.id"
+            class="border-t hover:bg-gray-50 transition-all duration-200"
+          >
+            <td class="p-4">{{ product.name }}</td>
+            <td class="p-4">{{ product.categories_id }}</td>
+            <td class="p-4">{{ product.description }}</td>
+            <td class="p-4 text-gray-600 font-semibold">P{{ product.whole_sale_price }}</td>
+            <td class="p-4 text-gray-600 font-semibold">P{{ product.retail_price }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
